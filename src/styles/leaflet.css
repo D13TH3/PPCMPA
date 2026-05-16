@@ -1,0 +1,143 @@
+/* Leaflet core styles */
+@import 'leaflet/dist/leaflet.css';
+
+/**
+ * Z-Index Layering System
+ * ========================
+ * Layer 0-9:    Map base elements (leaflet tiles, polygons)
+ * Layer 10-19:  Map controls and legends
+ * Layer 20-29:  Floating buttons on map
+ * Layer 30-39:  Navigation headers and sidebars
+ * Layer 40-49:  Dropdown menus and popovers
+ * Layer 50+:    Modals, dialogs, and overlays (managed by UI library)
+ */
+
+/* Override Leaflet's default high z-index values to fit our layer system */
+.leaflet-pane {
+  z-index: 1 !important;
+}
+
+.leaflet-tile-pane {
+  z-index: 1 !important;
+}
+
+.leaflet-overlay-pane {
+  z-index: 2 !important;
+}
+
+.leaflet-shadow-pane {
+  z-index: 3 !important;
+}
+
+.leaflet-marker-pane {
+  z-index: 4 !important;
+}
+
+.leaflet-tooltip-pane {
+  z-index: 5 !important;
+}
+
+.leaflet-popup-pane {
+  z-index: 6 !important;
+}
+
+.leaflet-control {
+  z-index: 10 !important;
+}
+
+/* Custom map styles */
+.leaflet-container {
+  font-family: inherit;
+  z-index: 0;
+}
+
+.mpa-popup {
+  font-family: inherit;
+}
+
+.mpa-popup h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mpa-popup p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.mpa-popup--public .mpa-popup__meta {
+  font-size: 13px;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.mpa-popup--public .mpa-popup__badge {
+  text-transform: capitalize;
+}
+
+.mpa-popup--public .mpa-popup__section {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.mpa-popup--public .mpa-popup__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 4px 0;
+}
+
+.mpa-popup--public .mpa-popup__list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+}
+
+.mpa-popup--public .mpa-popup__text {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.mpa-popup--public .mpa-popup__note {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 10px;
+  line-height: 1.35;
+}
+
+.leaflet-draw-toolbar {
+  margin-top: 12px !important;
+}
+
+.map-legend {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.map-legend h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  font-size: 13px;
+}
+
+.map-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}

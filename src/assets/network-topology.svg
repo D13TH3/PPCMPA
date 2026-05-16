@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+  <style>
+    .bg { fill: #0b1220; }
+    .panel { fill: rgba(255,255,255,0.03); stroke: #1f2937; stroke-width: 2; rx: 8; }
+    .box { fill: #071029; stroke: #1f2937; stroke-width: 2; rx: 6; }
+    .cloud { fill: #072a44; stroke: #2b6cb0; stroke-width: 2; rx:12; }
+    .text-title { font-family: Inter, Arial, sans-serif; font-size:20px; fill:#e6eef6; font-weight:700; }
+    .text-sub { font-family: Inter, Arial, sans-serif; font-size:13px; fill:#a8b6c9; }
+    .text { font-family: Inter, Arial, sans-serif; font-size:13px; fill:#cfe6ff; }
+    .edge { stroke:#2b6cb0; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+    .dashed { stroke-dasharray:8 6; }
+    .legend { font-family: Inter, Arial, sans-serif; font-size:12px; fill:#b8cbe0; }
+    .big { font-size:24px; fill:#ffffff; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b6cb0" />
+    </marker>
+  </defs>
+
+  <rect width="1400" height="1000" class="bg" />
+
+  <!-- Title -->
+  <text x="40" y="48" class="big">Network Topology — Puerto Princesa MPA System</text>
+  <text x="40" y="74" class="text-sub">Production architecture (edge, API layer, internal VPC, admin access)</text>
+
+  <!-- Internet / Clients -->
+  <g transform="translate(40,110)">
+    <rect x="0" y="0" width="300" height="84" class="cloud" />
+    <text x="14" y="28" class="text">Internet / Clients</text>
+    <text x="14" y="50" class="text-sub">Public users, Staff mobile apps, Admin consoles</text>
+  </g>
+
+  <!-- Router / Firewall -->
+  <g transform="translate(380,120)">
+    <rect x="0" y="0" width="140" height="64" class="box" />
+    <text x="12" y="36" class="text">Router / Internet Gateway</text>
+  </g>
+  <g transform="translate(540,120)">
+    <rect x="0" y="0" width="120" height="64" class="box" />
+    <text x="12" y="36" class="text">Firewall / WAF</text>
+  </g>
+
+  <!-- Central Switch -->
+  <g transform="translate(700,120)">
+    <rect x="0" y="0" width="160" height="72" class="panel" />
+    <text x="12" y="38" class="text">Load Balancer / API Gateway</text>
+  </g>
+
+  <!-- CDN + Frontend -->
+  <g transform="translate(40,220)">
+    <rect x="0" y="0" width="300" height="64" class="panel" />
+    <text x="14" y="36" class="text">CDN / Static Hosting (S3, CloudFront, Vercel)</text>
+  </g>
+  <g transform="translate(360,220)">
+    <rect x="0" y="0" width="200" height="64" class="panel" />
+    <text x="14" y="36" class="text">Frontend SPA (served from CDN)</text>
+  </g>
+
+  <!-- Internal VPC box -->
+  <g transform="translate(40,320)">
+    <rect x="0" y="0" width="1280" height="560" class="panel" />
+    <text x="12" y="26" class="text">Internal VPC / Private Subnets</text>
+
+    <!-- App Servers -->
+    <rect x="60" y="48" width="300" height="90" class="box" />
+    <text x="84" y="98" class="text">App Servers / Serverless Functions</text>
+    <text x="84" y="116" class="text-sub">Business logic, RBAC enforcement, APIs</text>
+
+    <!-- Auth -->
+    <rect x="420" y="48" width="220" height="72" class="box" />
+    <text x="438" y="92" class="text">Auth Service (OIDC)</text>
+
+    <!-- Database -->
+    <rect x="720" y="36" width="240" height="96" class="box" />
+    <text x="748" y="70" class="text">Postgres + PostGIS</text>
+    <text x="748" y="90" class="text-sub">Primary DB (multi-AZ)</text>
+
+    <!-- Tile Server -->
+    <rect x="60" y="170" width="260" height="72" class="box" />
+    <text x="84" y="212" class="text">Tile Server / Map Server</text>
+
+    <!-- Object Storage -->
+    <rect x="360" y="170" width="240" height="72" class="box" />
+    <text x="392" y="212" class="text">Object Storage (S3 / MinIO)</text>
+
+    <!-- Message Queue -->
+    <rect x="640" y="170" width="200" height="60" class="box" />
+    <text x="668" y="202" class="text">Message Queue (SQS / RabbitMQ)</text>
+
+    <!-- Monitoring -->
+    <rect x="940" y="170" width="220" height="72" class="box" />
+    <text x="972" y="212" class="text">Monitoring / Logging (Prometheus, Grafana, ELK)</text>
+
+    <!-- Audit Logs -->
+    <rect x="340" y="270" width="580" height="88" class="box" />
+    <text x="368" y="314" class="text">Audit Log Store (append-only, exported to cold storage)</text>
+
+    <!-- Bastion -->
+    <rect x="980" y="380" width="260" height="72" class="box" />
+    <text x="1004" y="422" class="text">Bastion / Admin Jump Host</text>
+
+    <!-- Field Mobile Sync -->
+    <rect x="60" y="360" width="300" height="72" class="box" />
+    <text x="84" y="402" class="text">Field Staff Mobile (local DB / offline sync)</text>
+
+    <!-- Backup / Cloud Storage external -->
+    <rect x="980" y="270" width="300" height="72" class="cloud" />
+    <text x="1004" y="312" class="text">Cloud Backup / External Storage</text>
+    <text x="1004" y="332" class="text-sub">(for DR & offsite backups)</text>
+
+  </g>
+
+  <!-- Connections (edges) -->
+  <path d="M340 150 L380 150" class="edge" />
+  <path d="M460 150 L540 150" class="edge" />
+  <path d="M660 150 L700 156" class="edge" />
+  <path d="M860 156 L960 156" class="edge" />
+
+  <path d="M160 284 L160 320" class="edge dashed" />
+  <path d="M460 284 L460 320" class="edge dashed" />
+  <path d="M860 220 L860 320" class="edge" />
+
+  <!-- LB/API to App Servers -->
+  <path d="M840 156 L140 380" class="edge" />
+  <path d="M840 156 L420 380" class="edge" />
+  <path d="M840 156 L780 380" class="edge" />
+
+  <!-- App to DB, Tile, Storage, Queue -->
+  <path d="M360 430 L720 132" class="edge" />
+  <path d="M360 430 L200 220" class="edge" />
+  <path d="M360 430 L480 220" class="edge" />
+  <path d="M360 430 L760 220" class="edge" />
+
+  <!-- Bastion to internal -->
+  <path d="M1120 520 L1120 420" class="edge dashed" />
+
+  <!-- Admin network -->
+  <g transform="translate(40,760)">
+    <rect x="0" y="0" width="420" height="180" class="panel" />
+    <text x="18" y="28" class="text">Admin Office / System Admin</text>
+    <text x="18" y="48" class="text-sub">Workstations (MFA + VPN)</text>
+
+    <rect x="22" y="72" width="140" height="56" class="box" />
+    <text x="34" y="106" class="text">Admin PC</text>
+
+    <rect x="182" y="72" width="140" height="56" class="box" />
+    <text x="194" y="106" class="text">Printer / Scanner</text>
+  </g>
+
+  <path d="M200 760 L980 420" class="edge dashed" />
+
+  <!-- Legend box -->
+  <rect x="480" y="760" width="420" height="160" class="panel" />
+  <text x="500" y="788" class="legend">Legend</text>
+  <text x="500" y="810" class="legend">• Solid arrows: primary network flow</text>
+  <text x="500" y="830" class="legend">• Dashed arrows: administrative / management access</text>
+  <text x="500" y="850" class="legend">• Cloud Backup: offsite storage for DR</text>
+  <text x="500" y="870" class="legend">• RBAC enforced in App layer and Auth service</text>
+
+</svg>

@@ -1,0 +1,45 @@
+/**
+ * Puerto Princesa MPA System - Global Styles
+ *
+ * Z-Index Layering Hierarchy
+ * ===========================
+ * This application uses a strict z-index layering system to ensure
+ * proper UI stacking, especially with map components.
+ *
+ * Layer 0-9:    Map Base (Leaflet tiles, polygons, markers)
+ *               - Map container: z-0
+ *               - Leaflet panes: z-1 to z-6 (controlled in leaflet.css)
+ *
+ * Layer 10-19:  Map Controls & Overlays
+ *               - Map legend: z-10
+ *               - Measurement tools: z-10
+ *               - Drawing mode indicators: z-10
+ *               - Leaflet control buttons: z-10
+ *
+ * Layer 20-29:  Floating UI Elements
+ *               - Floating action buttons on map: z-20
+ *               - Toast notifications: z-20
+ *
+ * Layer 30-39:  Navigation & Persistent UI
+ *               - Top navigation bar: z-30
+ *               - Sidebar navigation: default (no z-index needed with sticky)
+ *
+ * Layer 40-49:  Dropdown Menus & Popovers
+ *               - shadcn/ui dropdowns: managed by library (z-50 default)
+ *               - Context menus: managed by library
+ *
+ * Layer 50+:    Modals, Dialogs & Overlays
+ *               - Dialog overlays: managed by shadcn/ui (z-50)
+ *               - Modal backgrounds: managed by shadcn/ui
+ *               - Alert dialogs: managed by shadcn/ui
+ *
+ * IMPORTANT RULES:
+ * ----------------
+ * 1. Map components should NEVER have z-index > 20
+ * 2. Navigation should ALWAYS be z-30 or higher
+ * 3. Modals/Dialogs are handled by shadcn/ui with z-50+
+ * 4. Use the documented layers, don't create arbitrary z-index values
+ * 5. When in doubt, test that modals and navigation appear above maps
+ */
+
+/* Global resets and utilities can go here */
