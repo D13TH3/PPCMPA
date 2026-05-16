@@ -1,0 +1,100 @@
+[33mcommit 01aaa39349aeaddf38d1668ab31071c47e1d361d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mPPC-MPA_PROTOTYPE[m[33m)[m
+Author: D13TH3 <202280224@psu.palawan.edu.ph>
+Date:   Sat May 16 11:41:44 2026 +0800
+
+    updating
+
+[1mdiff --git a/.github/workflows/render-svg.yml b/.github/workflows/render-svg.yml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..77a37ee[m
+[1m--- /dev/null[m
+[1m+++ b/.github/workflows/render-svg.yml[m
+[36m@@ -0,0 +1,35 @@[m
+[32m+[m[32mname: Render SVG to PNG[m
+[32m+[m
+[32m+[m[32mon:[m
+[32m+[m[32m  workflow_dispatch:[m
+[32m+[m[32m  push:[m
+[32m+[m[32m    branches:[m
+[32m+[m[32m      - main[m
+[32m+[m
+[32m+[m[32mjobs:[m
+[32m+[m[32m  render:[m
+[32m+[m[32m    runs-on: ubuntu-latest[m
+[32m+[m[32m    steps:[m
+[32m+[m[32m      - name: Check out repository[m
+[32m+[m[32m        uses: actions/checkout@v4[m
+[32m+[m
+[32m+[m[32m      - name: Install librsvg[m
+[32m+[m[32m        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin[m
+[32m+[m
+[32m+[m[32m      - name: Create output dir[m
+[32m+[m[32m        run: mkdir -p build[m
+[32m+[m
+[32m+[m[32m      - name: Render SVG to PNG[m
+[32m+[m[32m        run: |[m
+[32m+[m[32m          if [ -f "src/assets/network-topology.svg" ]; then[m
+[32m+[m[32m            rsvg-convert -w 1400 -h 1000 src/assets/network-topology.svg -o build/network-topology.png[m
+[32m+[m[32m            echo "Rendered build/network-topology.png"[m
+[32m+[m[32m          else[m
+[32m+[m[32m            echo "SVG not found: src/assets/network-topology.svg" && exit 1[m
+[32m+[m[32m          fi[m
+[32m+[m
+[32m+[m[32m      - name: Upload PNG artifact[m
+[32m+[m[32m        uses: actions/upload-artifact@v4[m
+[32m+[m[32m        with:[m
+[32m+[m[32m          name: network-topology-png[m
+[32m+[m[32m          path: build/network-topology.png[m
+[1mdiff --git a/.vscode/settings.json b/.vscode/settings.json[m
+[1mnew file mode 100644[m
+[1mindex 0000000..99f2322[m
+[1m--- /dev/null[m
+[1m+++ b/.vscode/settings.json[m
+[36m@@ -0,0 +1,3 @@[m
+[32m+[m[32m{[m
+[32m+[m[32m    "window.autoDetectColorScheme": true[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/ATTRIBUTIONS.md b/ATTRIBUTIONS.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5df5c40[m
+[1m--- /dev/null[m
+[1m+++ b/ATTRIBUTIONS.md[m
+[36m@@ -0,0 +1,3 @@[m
+[32m+[m[32mThis Figma Make file includes components from [shadcn/ui](https://ui.shadcn.com/) used under [MIT license](https://github.com/shadcn-ui/ui/blob/main/LICENSE.md).[m
+[32m+[m
+[32m+[m[32mThis Figma Make file includes photos from [Unsplash](https://unsplash.com) used under [license](https://unsplash.com/license).[m
+[1mdiff --git a/README.md b/README.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2425047[m
+[1m--- /dev/null[m
+[1m+++ b/README.md[m
+[36m@@ -0,0 +1,11 @@[m
+[32m+[m
+[32m+[m[32m  # PPC MPA w/ staff[m
+[32m+[m
+[32m+[m[32m  This is a code bundle for PPC MPA w/ staff. The original project is available at https://www.figma.com/design/tmLBBSMiEg3KYhncTOZJHE/PPC-MPA-w--staff.[m
+[32m+[m
+[32m+[m[32m  ## Running the code[m
+[32m+[m
+[32m+[m[32m  Run `npm i` to install the dependencies.[m
+[32m+[m
+[32m+[m[32m  Run `npm run dev` to start the development server.[m
+[32m+[m[41m  [m
+\ No newline at end of file[m
+[1mdiff --git a/REPORT_FLOW_INTEGRATION.md b/REPORT_FLOW_INTEGRATION.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..95924a9[m
+[1m--- /dev/null[m
+[1m+++ b/REPORT_FLOW_INTEGRATION.md[m
+[36m@@ -0,0 +1,334 @@[m
+[32m+[m[32m# Report Flow Integration - Complete Documentation[m
+[32m+[m
+[32m+[m[32m## ✅ SYSTEM STATUS: FULLY INTEGRATED[m
+[32m+[m
+[32m+[m[32mThe Puerto Princesa MPA System now has a **complete, end-to-end report flow** from Public submission through Staff verification to Admin approval.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 🔄 COMPLETE DATA FLOW[m
+[3
