@@ -1,0 +1,35 @@
+name: Render SVG to PNG
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install librsvg
+        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin
+
+      - name: Create output dir
+        run: mkdir -p build
+
+      - name: Render SVG to PNG
+        run: |
+          if [ -f "src/assets/network-topology.svg" ]; then
+            rsvg-convert -w 1400 -h 1000 src/assets/network-topology.svg -o build/network-topology.png
+            echo "Rendered build/network-topology.png"
+          else
+            echo "SVG not found: src/assets/network-topology.svg" && exit 1
+          fi
+
+      - name: Upload PNG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: network-topology-png
+          path: build/network-topology.png
